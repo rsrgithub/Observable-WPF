@@ -1,0 +1,145 @@
+﻿<Window x:Class="WPFRxNet.GitHubUsers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="clr-namespace:WPFRxNet.Models"
+        mc:Ignorable="d"
+        Title="GitHubUsers" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Width="150" 
+                Height="60"                 
+                Margin="0,5,5,0"
+                Name="RefreshButton">
+            Refresh GitHub Users
+        </Button>
+        <Border Margin="5"
+                Grid.Row="1"
+                BorderThickness="2"
+                BorderBrush="Gray">
+
+            <ListBox Name="ListBox" HorizontalContentAlignment="Stretch">
+                <!--<ListBox.Resources>
+                    <DataTemplate DataType="{x:Type models:GitHubUser}">
+                        <Border BorderThickness="0,0,0,2"
+                                BorderBrush="Gray">
+                            <StackPanel Margin="5">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Name:" 
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Login}" 
+                                               Margin="15,0,0,0" 
+                                               Grid.Column="1"
+                                               Grid.Row="0"></TextBlock>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.Resources>-->
+                <ListBoxItem>
+                    <Border BorderThickness="0,0,0,2"
+                            BorderBrush="Gray">
+                        <StackPanel Margin="5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Name:" 
+                                           FontWeight="Bold"/>
+                                <TextBlock Name="Suggestion1Name" 
+                                           Margin="15,0,0,0" 
+                                           Grid.Column="1"
+                                           Grid.Row="0"/>
+                                <Button Grid.Column="2"
+                                        Grid.Row="0" 
+                                        Name="Suggestion1CloseButton">
+                                    Remove
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Border BorderThickness="0,0,0,2"
+                            BorderBrush="Gray">
+                        <StackPanel Margin="5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Name:" 
+                                           FontWeight="Bold"/>
+                                <TextBlock Name="Suggestion2Name" 
+                                           Margin="15,0,0,0" 
+                                           Grid.Column="1"
+                                           Grid.Row="0"/>
+                                <Button Grid.Column="2"
+                                        Grid.Row="0" 
+                                        Name="Suggestion2CloseButton">
+                                    Remove
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Border BorderThickness="0,0,0,2"
+                            BorderBrush="Gray">
+                        <StackPanel Margin="5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Name:" 
+                                           FontWeight="Bold"/>
+                                <TextBlock Name="Suggestion3Name" 
+                                           Margin="15,0,0,0" 
+                                           Grid.Column="1"
+                                           Grid.Row="0"/>
+                                <Button Grid.Column="2"
+                                        Grid.Row="0" 
+                                        Name="Suggestion3CloseButton">
+                                    Remove
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </ListBoxItem>
+            </ListBox>
+        </Border>
+    </Grid>
+</Window>
