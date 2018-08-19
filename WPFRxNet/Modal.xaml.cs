@@ -28,50 +28,40 @@ namespace WPFRxNet
 
         private void SetupDrag()
         {
-            var mousedownObs = Observable.FromEventPattern<MouseEventArgs>(Image, "MouseLeftButtonDown")
-                .Select(evt => evt.EventArgs.GetPosition(Image));
-            var mouseupObs = Observable.FromEventPattern<MouseEventArgs>(this, "MouseLeftButtonUp");
-            var mousemoveObs = Observable.FromEventPattern<MouseEventArgs>(this, "MouseMove")
-                .Select(evt => evt.EventArgs.GetPosition(this));
+            var target = Border;
 
-            //var dragObs = mousedownObs.Merge((start) =>
-            //{
+            var mouseDownObs = Observable.FromEventPattern<MouseEventArgs>(target, "MouseLeftButtonDown")
+                .Select(evt =>
+                {
+                    var mousePos = evt.EventArgs.GetPosition(target);
+                    return mousePos;
+                });
 
-            //});
+            var mouseUpObs = Observable.FromEventPattern<MouseEventArgs>(this, "MouseLeftButtonUp");
 
-            //var drag = mousedownObs.Select(start => mousemoveObs.TakeUntil(mouseupObs).Select(move => new
-            //{
-            //    X = move.X - start.X,
-            //    Y = move.Y - start.Y
-            //}));
+            var mouseLeaveObs = Observable.FromEventPattern<MouseEventArgs>(this, "MouseLeave");
 
-            //var drag = mousedownObs.CombineLatest(mousemoveObs.TakeUntil(mouseupObs), (start, move) =>
-            //{
-            //    return new
-            //    {
-            //        X = move.X - start.X,
-            //        Y = move.Y - start.Y
-            //    };
-            //});
+            var mouseMoveObs = Observable.FromEventPattern<MouseEventArgs>(this, "MouseMove")
+                .Select(evt =>
+                {
+                    var mousePos = evt.EventArgs.GetPosition(this);
+                    return mousePos;
+                });
 
-            //var drag =
-            //    from mouseDownPosition in mousedownObs
-            //    from mouseMovePosition in mousemoveObs.StartWith(mouseDownPosition)
-            //        .TakeUntil(mouseupObs)
-            //    select mouseMovePosition;
 
-            var drag = from start in mousedownObs
-                       from move in mousemoveObs.TakeUntil(mouseupObs)
-                       select
-                           new
-                           {
-                               X = move.X - start.X,
-                               Y = move.Y - start.Y
-                           };
-            drag.Subscribe(value =>
+            var drag = mouseDownObs
+                .CombineLatest(mouseMoveObs, (p1, p2) => new { p1, p2 })
+                .TakeUntil(mouseUpObs.Merge(mouseLeaveObs))
+                .DistinctUntilChanged()
+                .Repeat();
+
+            drag.Subscribe(paired =>
             {
-                Canvas.SetLeft(Image, value.X);
-                Canvas.SetTop(Image, value.Y);
+                Console.WriteLine($"paired----{paired}");
+                var x = paired.p2.X - paired.p1.X;
+                var y = paired.p2.Y - paired.p1.Y;
+                Canvas.SetLeft(target, x);
+                Canvas.SetTop(target, y);
             });
         }
     }

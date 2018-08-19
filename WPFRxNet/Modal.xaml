@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="Modal" Height="450" Width="800">
     <Canvas>
-        <Image Source="C:\Rajendra.Singh\ReactiveExtension.NET\WPFRxNet\WPFRxNet\img\Sample.jpg" Height="200" Width="200" Name="Image"></Image>
+        <Border Name="Border"
+                BorderThickness="2"
+                BorderBrush="CadetBlue">
+            <Image Source="C:\Rajendra.Singh\ReactiveExtension.NET\WPFRxNet\WPFRxNet\img\Sample.jpg"                   
+                   Name="Image"
+                   Height="100" Width="100"/>
+        </Border>
     </Canvas>
 </Window>
